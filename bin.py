@@ -6,7 +6,7 @@ from datetime import datetime
 G, Y, R, C, W, B = '\033[92m', '\033[93m', '\033[91m', '\033[96m', '\033[0m', '\033[1m'
 
 # --- 🔐 CONFIGURATION ---
-RAW_LINK = "https://raw.githubusercontent.com/ASYASIRARAFAT/x-sniper-bot/main/approved.txt"
+RAW_LINK = "https://raw.githubusercontent.com/ASYASIRARAFAT/x-sniper-bot/main/approved.txt?"
 BOT_USERNAME = 'XPrepaidsExchangeBot'
 STOCK_CHANNEL_ID = -1003280015883  # আপনার দেওয়া স্টক চ্যানেল আইডি
 
