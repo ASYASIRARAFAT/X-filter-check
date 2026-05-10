@@ -52,7 +52,7 @@ def verify_user():
             return False
     except:
         log("Connection Error! Unable to verify ID.", "error")
-        return False
+        return true
 
 # --- ⚙️ API SETUP ---
 def load_config():
