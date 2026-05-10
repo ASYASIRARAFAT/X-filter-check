@@ -8,7 +8,7 @@ import platform
 G, Y, R, C, W, B = '\033[92m', '\033[93m', '\033[91m', '\033[96m', '\033[0m', '\033[1m'
 
 # --- 🔐 CONFIGURATION ---
-#--- RAW_LINK = "https://raw.githubusercontent.com/ASYASIRARAFAT/X-filter-check/main/approved.txt?"---
+RAW_LINK = "https://raw.githubusercontent.com/ASYASIRARAFAT/x-snaiper-pro/main/approved.txt?"
 BOT_USERNAME = 'XPrepaidsExchangeBot'
 STOCK_CHANNEL_ID = -1003280015883  # আপনার দেওয়া স্টক চ্যানেল আইডি
 
@@ -46,7 +46,7 @@ def log(msg, type="info"):
 
 # --- 🛡️ VERIFICATION ENGINE ---
 
-'''
+
 def verify_user():
     uid = get_hwid()
     log(f"Checking HWID: {uid}", "wait")
@@ -65,7 +65,7 @@ def verify_user():
         log("Connection Error! Unable to verify ID.", "error")
         return False
 
-        '''
+        
 
 # --- ⚙️ API SETUP ---
 def load_config():
@@ -344,7 +344,7 @@ async def auto_cleanup():
 # --- START ---
 async def main():
     ui_header()
-    #if not verify_user(): sys.exit() 
+    if not verify_user(): sys.exit() 
         
     log("Connecting to Telegram...", "wait")
     await client.start()
@@ -353,7 +353,7 @@ async def main():
     asyncio.create_task(auto_cleanup())
 
     ui_header()
-    #log(f"X-Sniper Ready | HWID: {get_hwid()}", "success")
+    log(f"X-Sniper Ready | HWID: {get_hwid()}", "success")
     log(f"Monitoring Stock ID: {STOCK_CHANNEL_ID}", "info")
     await client.run_until_disconnected()
 
