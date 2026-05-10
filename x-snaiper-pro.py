@@ -15,16 +15,12 @@ STOCK_CHANNEL_ID = -1003280015883  # আপনার দেওয়া স্�
 
 def get_hwid():
     try:
-        # Cross-platform (Windows, Linux, iOS) ইউনিক আইডি জেনারেট করা
-        system_info = platform.system() + platform.release() + platform.machine()
-        mac_address = str(uuid.getnode())
-        
-        unique_string = system_info + mac_address
-        return hashlib.sha256(unique_string.encode()).hexdigest()[:12].upper()
-    except Exception as e:
-        print(f"\033[91m[!] HWID Error: {e}\033[0m")
+        # Termux/Linux এর জন্য ইউনিক আইডি জেনারেট করা
+        cpu = os.popen('uname -a').read()
+        user = os.popen('whoami').read()
+        return hashlib.sha256((cpu + user).encode()).hexdigest()[:12].upper()
+    except:
         return "9FDF6C1387E7"
-
         
 
 # --- 🛠 UI & LOGGING ---
