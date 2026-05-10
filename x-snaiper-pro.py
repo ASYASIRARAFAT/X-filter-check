@@ -12,7 +12,7 @@ RAW_LINK = "https://raw.githubusercontent.com/ASYASIRARAFAT/x-snaiper-pro/main/a
 BOT_USERNAME = 'XPrepaidsExchangeBot'
 STOCK_CHANNEL_ID = -1003280015883  # আপনার দেওয়া স্টক চ্যানেল আইডি
 
-'''
+
 def get_hwid():
     try:
         # Cross-platform (Windows, Linux, iOS) ইউনিক আইডি জেনারেট করা
@@ -25,7 +25,7 @@ def get_hwid():
         print(f"\033[91m[!] HWID Error: {e}\033[0m")
         return "9FDF6C1387E7"
 
-        '''
+        
 
 # --- 🛠 UI & LOGGING ---
 def ui_header():
