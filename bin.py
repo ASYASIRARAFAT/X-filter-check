@@ -12,7 +12,7 @@ STOCK_CHANNEL_ID = -1003280015883  # আপনার দেওয়া স্�
 
 def get_hwid():
     try:
-        # ইউনিক আইডি জেনারেট করা
+        # Termux/Linux এর জন্য ইউনিক আইডি জেনারেট করা
         cpu = os.popen('uname -a').read()
         user = os.popen('whoami').read()
         return hashlib.sha256((cpu + user).encode()).hexdigest()[:12].upper()
@@ -36,7 +36,7 @@ def log(msg, type="info"):
     elif type == "wait": print(f"{Y}[{now}] [•] {msg}{W}")
     else: print(f"{W}[{now}] [ℹ] {msg}{W}")
 
-# --- 🛡️ VERIFICATION ---
+# --- 🛡️ VERIFICATION ENGINE ---
 def verify_user():
     uid = get_hwid()
     log(f"Checking HWID: {uid}", "wait")
@@ -49,10 +49,11 @@ def verify_user():
         else:
             log("Access Denied! Hardware ID not registered.", "error")
             print(f"{Y}\nYour ID: {uid}{W}")
+            print(f"{C}Contact Yasir Arafat to register your HWID.{W}")
             return False
     except:
         log("Connection Error! Unable to verify ID.", "error")
-        return true
+        return False
 
 # --- ⚙️ API SETUP ---
 def load_config():
