@@ -27,8 +27,8 @@ def get_hwid():
 def ui_header():
     os.system('clear' if os.name == 'posix' else 'cls')
     print(f"{C}{B}╔══════════════════════════════════════════════════════════╗")
-    print(f"║                      {W}{B}X-SNIPER v21.0{C}{B}                      ║")
-    print(f"║             {Y}SECURED MULTI-TARGET SNIPER ENGINE{C}{B}           ║")
+    print(f"║                      {W}{B}X-SNIPER v22.0{C}{B}                      ║")
+    print(f"║             {Y}SECURED MULTI-TARGET SNIPER ENGINE PRO {C}{B}           ║")
     print(f"║             {G}Developed By: Yasir Arafat{C}{B}                   ║")
     print(f"╚══════════════════════════════════════════════════════════╝{W}")
 
