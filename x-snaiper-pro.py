@@ -245,18 +245,17 @@ async def command(event):
 # ২. অন্যান্য কন্ট্রোল কমান্ডসমূহ
     else:
         cmd = txt.lower()
-        # এখানে set যোগ করা হয়েছে যাতে মেসেজ অটো ডিলিট হয়
         if cmd in ["targets", "status", "clear", "stop"] or cmd.startswith("cancel") or cmd.startswith("set"):
             await event.delete() 
             
             if cmd == "targets":
                 if not targets:
-                    await event.respond("❌ No targets in memory.", delete_after=5)
+                    await event.respond("❌ No targets in memory.")
                 else:
                     msg = "🎯 **Active Targets List:**\n"
                     for i, t in enumerate(targets, 1):
                         msg += f"{i}. BIN: `{t['bin']}` | Bal: `${t['bal']}`\n"
-                    await event.respond(msg, delete_after=10)
+                    await event.respond(msg)
 
             elif cmd.startswith("cancel"):
                 try:
@@ -264,39 +263,36 @@ async def command(event):
                     index = int(parts[1]) - 1
                     if 0 <= index < len(targets):
                         removed = targets.pop(index)
-                        await event.respond(f"✅ Target {index + 1} Removed: `{removed['bin']}`", delete_after=5)
+                        await event.respond(f"✅ Target {index + 1} Removed: `{removed['bin']}`")
                         if not targets:
                             is_attacking = False
                     else:
-                        await event.respond("❌ Invalid serial number!", delete_after=5)
+                        await event.respond("❌ Invalid serial number!")
                 except:
-                    await event.respond("Format: `cancel 1`", delete_after=5)
+                    await event.respond("Format: `cancel 1`")
 
             elif cmd == "status":
                 state = "🔥 ACTIVE" if is_attacking else "💤 SLEEPING"
-                # এখানে ব্যালেন্স রেঞ্জ ফিল্টারটি যোগ করা হয়েছে
-                await event.respond(f"📊 **System Status:** {state}\n📦 **Targets:** {len(targets)}\n💰 **Range:** `${min_bal}` - `${max_bal}`", delete_after=5)
+                await event.respond(f"📊 **System Status:** {state}\n📦 **Targets:** {len(targets)}\n💰 **Range:** `${min_bal}` - `${max_bal}`")
             
-            # clear কমান্ডের মিসিং লজিক এখানে অ্যাড করা হলো
             elif cmd == "clear":
                 targets.clear()
                 is_attacking = False
-                await event.respond("🧹 Memory Cleared. Sniper Stopped.", delete_after=5)
+                await event.respond("🧹 Memory Cleared. Sniper Stopped.")
 
             elif cmd.startswith("set"):
                 try:
                     parts = cmd.split()
-                    # এখান থেকে global লাইনটি মুছে ফেলা হয়েছে
                     min_bal = float(parts[1])
                     max_bal = float(parts[2])
-                    await event.respond(f"✅ Auto-Filter Updated!\nRange: `${min_bal}` to `${max_bal}`", delete_after=5)
+                    await event.respond(f"✅ Auto-Filter Updated!\nRange: `${min_bal}` to `${max_bal}`")
                     log(f"Range Updated: {min_bal} - {max_bal}", "success")
                 except:
-                    await event.respond("Format: `set MIN MAX` (e.g., `set 5 20`)", delete_after=5)
+                    await event.respond("Format: `set MIN MAX` (e.g., `set 5 20`)")
 
             elif cmd == "stop":
                 is_attacking = False
-                await event.respond("🛑 Sniper Engine Paused.", delete_after=5)
+                await event.respond("🛑 Sniper Engine Paused.")
 
 # --- BOT HANDLER ---
 @client.on(events.NewMessage(chats=BOT_USERNAME))
